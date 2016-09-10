@@ -1,5 +1,5 @@
 class TextLayer extends Layer
-
+		
 	constructor: (options={}) ->
 		@doAutoSize = false
 		@doAutoSizeHeight = false
@@ -12,12 +12,12 @@ class TextLayer extends Layer
 		super options
 		@style.whiteSpace = "pre-line" # allow \n in .text
 		@style.outline = "none" # no border when selected
-
+		
 	setStyle: (property, value, pxSuffix = false) ->
 		@style[property] = if pxSuffix then value+"px" else value
 		@emit("change:#{property}", value)
 		if @doAutoSize then @calcSize()
-
+		
 	calcSize: ->
 		sizeAffectingStyles =
 			lineHeight: @style["line-height"]
@@ -45,11 +45,11 @@ class TextLayer extends Layer
 
 	@define "autoSize",
 		get: -> @doAutoSize
-		set: (value) ->
+		set: (value) -> 
 			@doAutoSize = value
 			if @doAutoSize then @calcSize()
 	@define "autoSizeHeight",
-		set: (value) ->
+		set: (value) -> 
 			@doAutoSize = value
 			@doAutoSizeHeight = value
 			if @doAutoSize then @calcSize()
@@ -58,44 +58,43 @@ class TextLayer extends Layer
 			@_element.contentEditable = boolean
 			@ignoreEvents = !boolean
 			@on "input", -> @calcSize() if @doAutoSize
-
 	@define "text",
 		get: -> @_element.textContent
 		set: (value) ->
 			@_element.textContent = value
 			@emit("change:text", value)
 			if @doAutoSize then @calcSize()
-	@define "fontFamily",
+	@define "fontFamily", 
 		get: -> @style.fontFamily
 		set: (value) -> @setStyle("fontFamily", value)
-	@define "fontSize",
+	@define "fontSize", 
 		get: -> @style.fontSize.replace("px","")
 		set: (value) -> @setStyle("fontSize", value, true)
-	@define "lineHeight",
-		get: -> @style.lineHeight
+	@define "lineHeight", 
+		get: -> @style.lineHeight 
 		set: (value) -> @setStyle("lineHeight", value)
-	@define "fontWeight",
-		get: -> @style.fontWeight
+	@define "fontWeight", 
+		get: -> @style.fontWeight 
 		set: (value) -> @setStyle("fontWeight", value)
-	@define "fontStyle",
+	@define "fontStyle", 
 		get: -> @style.fontStyle
 		set: (value) -> @setStyle("fontStyle", value)
-	@define "fontVariant",
+	@define "fontVariant", 
 		get: -> @style.fontVariant
 		set: (value) -> @setStyle("fontVariant", value)
 	@define "padding",
-		set: (value) ->
+		set: (value) -> 
 			@setStyle("paddingTop", value, true)
 			@setStyle("paddingRight", value, true)
 			@setStyle("paddingBottom", value, true)
 			@setStyle("paddingLeft", value, true)
-	@define "paddingTop",
+	@define "paddingTop", 
 		get: -> @style.paddingTop.replace("px","")
 		set: (value) -> @setStyle("paddingTop", value, true)
-	@define "paddingRight",
+	@define "paddingRight", 
 		get: -> @style.paddingRight.replace("px","")
 		set: (value) -> @setStyle("paddingRight", value, true)
-	@define "paddingBottom",
+	@define "paddingBottom", 
 		get: -> @style.paddingBottom.replace("px","")
 		set: (value) -> @setStyle("paddingBottom", value, true)
 	@define "paddingLeft",
@@ -103,13 +102,13 @@ class TextLayer extends Layer
 		set: (value) -> @setStyle("paddingLeft", value, true)
 	@define "textAlign",
 		set: (value) -> @setStyle("textAlign", value)
-	@define "textTransform",
-		get: -> @style.textTransform
+	@define "textTransform", 
+		get: -> @style.textTransform 
 		set: (value) -> @setStyle("textTransform", value)
-	@define "letterSpacing",
+	@define "letterSpacing", 
 		get: -> @style.letterSpacing.replace("px","")
 		set: (value) -> @setStyle("letterSpacing", value, true)
-	@define "length",
+	@define "length", 
 		get: -> @text.length
 
 convertToTextLayer = (layer) ->
@@ -117,7 +116,7 @@ convertToTextLayer = (layer) ->
 		name: layer.name
 		frame: layer.frame
 		parent: layer.parent
-
+	
 	cssObj = {}
 	css = layer._info.metadata.css
 	css.forEach (rule) ->
@@ -125,13 +124,13 @@ convertToTextLayer = (layer) ->
 		arr = rule.split(': ')
 		cssObj[arr[0]] = arr[1].replace(';','')
 	t.style = cssObj
-
+	
 	importPath = layer.__framerImportedFromPath
 	if _.includes importPath, '@2x'
 		t.fontSize *= 2
 		t.lineHeight = (parseInt(t.lineHeight)*2)+'px'
 		t.letterSpacing *= 2
-
+					
 	t.y -= (parseInt(t.lineHeight)-t.fontSize)/2 # compensate for how CSS handles line height
 	t.y -= t.fontSize * 0.1 # sketch padding
 	t.x -= t.fontSize * 0.08 # sketch padding
