@@ -7,25 +7,25 @@ userData = require "users" ## module with object containing users
 ###################################################################
 
 ### Chat list view (now chatting) ###
-# chatView = new Layer
-# 	width:Screen.width
-# 	height:Screen.height
-# 	backgroundColor: "lightgrey"
-# 	parent:Views
+chatView = new Layer
+	width:Screen.width
+	height:Screen.height
+	backgroundColor: "lightgrey"
+	parent:Views
 # 
 # ### Add to chat view ###
-# addToChat = new Layer
-# 	width:Screen.width
-# 	height:Screen.height
-# 	backgroundColor: "lightgrey"
-# 	parent:Views
+addToChat = new Layer
+	width:Screen.width
+	height:Screen.height
+	backgroundColor: "lightgrey"
+	parent:Views
 # 	
 # ### Conversation View ###
-# conversationView = new Layer
-# 	height:Screen.height
-# 	width:Screen.width
-# 	backgroundColor: "pink"
-# 	parent:Views
+conversationView = new Layer
+	height:Screen.height
+	width:Screen.width
+	backgroundColor: "pink"
+	parent:Views
 	
 
 itinerarySource = require 'itineraryView'
@@ -33,17 +33,17 @@ itineraryView = itinerarySource.itineraryView
 itineraryView.parent = Views
 
 
-# restaurantView = new Layer
-# 	height:Screen.height
-# 	width:Screen.width
-# 	backgroundColor: "green"
-# 	parent:Views	
-# 
-# reservationsView = new Layer
-# 	height:Screen.height
-# 	width:Screen.width
-# 	backgroundColor: "purple"
-# 	parent:Views	
+restaurantView = new Layer
+	height:Screen.height
+	width:Screen.width
+	backgroundColor: "green"
+	parent:Views	
+
+reservationsView = new Layer
+	height:Screen.height
+	width:Screen.width
+	backgroundColor: "purple"
+	parent:Views	
 
 	
 ## View Controller Defaults ##
@@ -243,85 +243,85 @@ buildListItem  = (forItem, listParent, hasDisclosure) ->
 ###################################################################
 
 # Header ##
-# friendsListHeader = new Layer
-# 	width:Screen.width
-# 	height:Screen.height / 10
-# 	backgroundColor: "white"
-# 	parent:addToChat
+friendsListHeader = new Layer
+	width:Screen.width
+	height:Screen.height / 10
+	backgroundColor: "white"
+	parent:addToChat
 # 	
 # Chat Scrolling List ##
-# friendsList = new ScrollComponent
-# 	height:Screen.height
-# 	width:Screen.width
-# 	backgroundColor: "#EEE"
-# 	parent:addToChat
-# 	scrollHorizontal: false
-# 	contentInset: 
-# 		top:friendsListHeader.height + rowSpacer
-# 		bottom:rowSpacer
-# friendsList.sendToBack()
+friendsList = new ScrollComponent
+	height:Screen.height
+	width:Screen.width
+	backgroundColor: "#EEE"
+	parent:addToChat
+	scrollHorizontal: false
+	contentInset: 
+		top:friendsListHeader.height + rowSpacer
+		bottom:rowSpacer
+friendsList.sendToBack()
 # 
 # Header subviews
-# btn_back = new Layer
-# 	width: 100
-# 	height: 100
-# 	html: "back"
-# 	x:Align.left
-# 	y:Align.center
-# 	backgroundColor:"transparent"
-# 	parent: addToChat
-# 	style:
-# 		fontFamily: "Helvetica Neue"
-# 		marginLeft:"20px"
-# 		fontSize: "36px"
-# 		lineHeight:"100px" 
-# 		fontWeight: "300"
-# 		textAlign: "center"
-# 		color:"grey" 
-# 		
-# btn_back.on Events.TapEnd, -> 
-# 	Views.back()		
-# 
-# btn_add = new Layer
-# 	width: 100
-# 	height: 100
-# 	html: "+"
-# 	x:Align.right
-# 	y:Align.center
-# 	parent: friendsListHeader
-# 	backgroundColor:"transparent"
-# 	style:
-# 		fontFamily: "Helvetica Neue"
-# 		marginRight:"20px"
-# 		fontSize: "72px"
-# 		lineHeight:"100px" 
-# 		fontWeight: "200"
-# 		textAlign: "center"
-# 		color:"grey" 
-# 
-# btn_add.on Events.TapEnd, () ->
-# 	Views.slideInUp(addToChat)
-# 
-# 
-# chatListViewTitle = new Layer
-# 	width:500
-# 	height:100
-# 	x:Align.center
-# 	y:Align.center
-# 	backgroundColor:"transparent"
-# 	html:"Meine Kontakte"
-# 	style:
-# 		fontFamily: "Helvetica Neue"
-# 		fontSize: "36px"
-# 		lineHeight:"100px" 
-# 		fontWeight: "300"
-# 		textAlign: "center"
-# 		color:"black" 
-# 	parent: friendsListHeader
-# 	
-# for row in friendsList.content.children
-# 	row.on Events.TapEnd, () ->
-# 		print "hello, I'm tapped"
+btn_back = new Layer
+	width: 100
+	height: 100
+	html: "back"
+	x:Align.left
+	y:Align.center
+	backgroundColor:"transparent"
+	parent: addToChat
+	style:
+		fontFamily: "Helvetica Neue"
+		marginLeft:"20px"
+		fontSize: "36px"
+		lineHeight:"100px" 
+		fontWeight: "300"
+		textAlign: "center"
+		color:"grey" 
+		
+btn_back.on Events.TapEnd, -> 
+	Views.back()		
+
+btn_add = new Layer
+	width: 100
+	height: 100
+	html: "+"
+	x:Align.right
+	y:Align.center
+	parent: friendsListHeader
+	backgroundColor:"transparent"
+	style:
+		fontFamily: "Helvetica Neue"
+		marginRight:"20px"
+		fontSize: "72px"
+		lineHeight:"100px" 
+		fontWeight: "200"
+		textAlign: "center"
+		color:"grey" 
+
+btn_add.on Events.TapEnd, () ->
+	Views.slideInUp(addToChat)
+
+
+chatListViewTitle = new Layer
+	width:500
+	height:100
+	x:Align.center
+	y:Align.center
+	backgroundColor:"transparent"
+	html:"Meine Kontakte"
+	style:
+		fontFamily: "Helvetica Neue"
+		fontSize: "36px"
+		lineHeight:"100px" 
+		fontWeight: "300"
+		textAlign: "center"
+		color:"black" 
+	parent: friendsListHeader
+	
+for row in friendsList.content.children
+	row.on Events.TapEnd, () ->
+		print "hello, I'm tapped"
 # 
 # 
 
@@ -434,62 +434,62 @@ buildListItem  = (forItem, listParent, hasDisclosure) ->
 
 
 
-# conversationHeader = new Layer
-# 	width:Screen.width
-# 	height:Screen.height / 10
-# 	backgroundColor: "white"
-# 	parent:conversationView
-# 	
-# # Chat Scrolling List ##
-# conversationList = new ScrollComponent
-# 	height:Screen.height
-# 	width:Screen.width
-# 	backgroundColor: "white"
-# 	parent:conversationView
-# 	scrollHorizontal: false
-# 	contentInset: 
+conversationHeader = new Layer
+	width:Screen.width
+	height:Screen.height / 10
+	backgroundColor: "white"
+	parent:conversationView
+	
+# Chat Scrolling List ##
+conversationList = new ScrollComponent
+	height:Screen.height
+	width:Screen.width
+	backgroundColor: "white"
+	parent:conversationView
+	scrollHorizontal: false
+	contentInset: 
 # 		top:myChat_Header.height + spacingUnit
-# 		bottom:spacingUnit
-# conversationList.sendToBack()
-# 
-# 
-# 
-# ## Header subviews
-# btn_ConversationBack = new Layer
-# 	width: 100
-# 	height: 100
-# 	html: "back"
-# 	x:Align.left
-# 	y:Align.center
-# 	backgroundColor:"transparent"
-# 	parent:conversationHeader
-# 	style:
-# 		fontFamily: "Helvetica Neue"
-# 		marginLeft:"20px"
-# 		fontSize: "36px"
-# 		lineHeight:"100px" 
-# 		fontWeight: "300"
-# 		textAlign: "center"
-# 		color:"grey" 
-# 		
-# 
-# 
-# btn_ConversationBack.onTap ->
-# 	Views.back()
-# 
-# 
-# conversationViewHeaderTitle = new Layer
-# 	width:200
-# 	height:100
-# 	x:Align.center
-# 	y:Align.center
-# 	backgroundColor:"transparent"
-# 	html:"Chat"
-# 	style:
-# 		fontFamily: "Helvetica Neue"
-# 		fontSize: "36px"
-# 		lineHeight:"100px" 
-# 		fontWeight: "300"
-# 		textAlign: "center"
-# 		color:"black" 
-# 	parent:conversationHeader
+		bottom:spacingUnit
+conversationList.sendToBack()
+
+
+
+## Header subviews
+btn_ConversationBack = new Layer
+	width: 100
+	height: 100
+	html: "back"
+	x:Align.left
+	y:Align.center
+	backgroundColor:"transparent"
+	parent:conversationHeader
+	style:
+		fontFamily: "Helvetica Neue"
+		marginLeft:"20px"
+		fontSize: "36px"
+		lineHeight:"100px" 
+		fontWeight: "300"
+		textAlign: "center"
+		color:"grey" 
+		
+
+
+btn_ConversationBack.onTap ->
+	Views.back()
+
+
+conversationViewHeaderTitle = new Layer
+	width:200
+	height:100
+	x:Align.center
+	y:Align.center
+	backgroundColor:"transparent"
+	html:"Chat"
+	style:
+		fontFamily: "Helvetica Neue"
+		fontSize: "36px"
+		lineHeight:"100px" 
+		fontWeight: "300"
+		textAlign: "center"
+		color:"black" 
+	parent:conversationHeader
